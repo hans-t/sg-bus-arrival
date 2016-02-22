@@ -1,0 +1,18 @@
+table {
+    border:none;
+    border-collapse: collapse;
+}
+
+table td {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+table tr:first-child {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+}
+
+table tr:last-child {
+    border-bottom: 1px solid #000;
+}
