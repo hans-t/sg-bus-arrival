@@ -1,6 +1,11 @@
+
+
 table {
     border:none;
     border-collapse: collapse;
+    width: 100%;
+    font-size: 32px;
+    font-family: sans-serif;
 }
 
 table td {
@@ -15,4 +20,16 @@ table tr:first-child {
 
 table tr:last-child {
     border-bottom: 1px solid #000;
+}
+
+#bus-stop-id-input {
+    width: 100%;
+    height: 132px;
+    font-size: 120px;
+    margin: 10px 0 20px 0;
+}
+
+#bus-stop-id-label {
+    font-size: 32px;
+    font-family: sans-serif;
 }

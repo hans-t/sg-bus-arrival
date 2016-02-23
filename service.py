@@ -18,10 +18,10 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/<bus_stop_id>')
+@app.route('/api/bus/<bus_stop_id>')
 def arrivals_data(bus_stop_id):
     return jsonify(**get_bus_arrivals_data(bus_stop_id))
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')
