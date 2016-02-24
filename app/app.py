@@ -9,6 +9,7 @@ import settings
 app = Flask(
     import_name=__name__,
     static_folder=settings.STATIC_FOLDER,
+    static_url_path=settings.STATIC_URL_PATH,
     template_folder=settings.HTML_TEMPLATE_FOLDER,
 )
 
