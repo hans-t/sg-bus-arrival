@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Check Bus Arrival Time</title>
-        <link rel="stylesheet" href="static/index.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     </head>
     <body>
         <label id="bus-stop-id-label">Bus Stop Number
@@ -17,6 +17,6 @@
                 <td>Status</td>
             </tr>
         </table>
-        <script src="static/checkArrival.js"></script>
+        <script src="{{ url_for('static', filename='js/checkArrival.js') }}"></script>
     </body>
 </html>

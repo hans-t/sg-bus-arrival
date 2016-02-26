@@ -1,5 +1,5 @@
-.pdf
 __pycache__
 credentials.py
 *.pdf
 venv
+*.pyc
