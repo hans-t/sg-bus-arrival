@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+for var in SITENAME API_KEY UNIQUE_USER_ID; do
+    if ! [ -n "${!var}" ]; then
+        echo "$var environment variable is not set."
+        exit 1
+    fi
+done
+
 export ROOT=~/sites/$SITENAME
 
 
@@ -24,6 +32,7 @@ pip install -r source/requirements.txt
 
 ## Populate variables in files
 cd source/deployment
+envsubst < credentials.py > ../app/credentials.py
 DOLLAR=$ envsubst < nginx_template.conf > nginx-$SITENAME.conf
 DOLLAR=$ envsubst < supervisor_template.conf > supervisor-$SITENAME.conf
 sed -e s/'$SITENAME'/$SITENAME/g gunicorn_start_template.sh > gunicorn_start.sh
