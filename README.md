@@ -1,7 +1,5 @@
 # To-do:
 
-- Automate populating credentials when provisioning.
-- Automate deployment
 - Refactor Javascript
 - Add tests
 - redirect IP_ADDRESS to $SITENAME: http://serverfault.com/questions/629045/nginx-redirect-ip-address-to-domain-name
