@@ -2,13 +2,13 @@
     var input = document.getElementById('bus-stop-id-input');
     input.oninput = function(event) {
         if (this.checkValidity()) {
-            loadArrivalData(this.value);
+            loadBusStopInfo(this.value);
         }
     }
 })()
 
 
-function loadArrivalData(busStopId) {
+function loadBusStopInfo(busStopId) {
     var request = new XMLHttpRequest();
     request.addEventListener('load', renderData);
     request.open('GET', '/api/bus/' + busStopId, true);
@@ -18,14 +18,17 @@ function loadArrivalData(busStopId) {
 
 
 function renderData(event){
-    var busArrivalData = event.target.response;
-    var currentTime = new Date(busArrivalData.currentTime);
-    console.log(busArrivalData);
+    var busStopInfo = event.target.response;
+    var currentTime = new Date(busStopInfo.currentTime);
+    console.log(busStopInfo);
+
+    var busStopDescSpan = document.getElementById('bus-stop-desc-p');
+    busStopDescSpan.textContent = getBusStopDesc(busStopInfo);
 
     var resultTable = document.getElementById('arrival-table');
     cleanUpTable(resultTable);
 
-    var busServices = busArrivalData.Services;
+    var busServices = busStopInfo.Services;
     for (var i=0; i<busServices.length; i++) {
         var busService = busServices[i];
         var row = [
@@ -56,6 +59,15 @@ function renderData(event){
             },
         ]
         renderRowToTable(resultTable, row);
+    }
+}
+
+
+function getBusStopDesc(busStopInfo) {
+    if (busStopInfo.hasOwnProperty('Description')) {
+        return busStopInfo['Description'] + ' (' + busStopInfo['Road'] + ')'
+    } else {
+        return 'Incorrect bus stop number.'
     }
 }
 

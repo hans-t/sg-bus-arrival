@@ -13,7 +13,7 @@ export ROOT=~/sites/$SITENAME
 
 ## Install required libraries
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip git nginx supervisor
+sudo apt-get install -y build-essential python3 python3-pip git nginx supervisor
 
 
 ## Change to root directory, create required folders
@@ -22,6 +22,14 @@ cd $ROOT
 rm -rf source
 mkdir -p logs
 
+
+## Install redis-server
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make && sudo make install
+cd ..
+rm -rf redis-stable redis-stable.tar.gz
 
 ## Create Python virtual environment, clone Github repo and install Python packages
 python3 -m venv --copies --clear venv
@@ -32,6 +40,7 @@ pip install -r source/requirements.txt
 
 ## Populate variables in files
 cd source/deployment
+envsubst < redis_template.conf > redis.conf
 envsubst < credentials.py > ../app/credentials.py
 DOLLAR=$ envsubst < nginx_template.conf > nginx-$SITENAME.conf
 DOLLAR=$ envsubst < supervisor_template.conf > supervisor-$SITENAME.conf
@@ -54,3 +63,4 @@ sudo service nginx start
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start gunicorn
+sudo supervisorctl start redis

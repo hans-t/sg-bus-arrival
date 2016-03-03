@@ -31,3 +31,10 @@ table tr:last-child {
     font-size: 32px;
     font-family: sans-serif;
 }
+
+#bus-stop-desc-p {
+    font-size: 52px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
