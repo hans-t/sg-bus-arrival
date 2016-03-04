@@ -31,6 +31,7 @@ make && sudo make install
 cd ..
 rm -rf redis-stable redis-stable.tar.gz
 
+
 ## Create Python virtual environment, clone Github repo and install Python packages
 python3 -m venv --copies --clear venv
 source venv/bin/activate
@@ -57,6 +58,7 @@ sudo chmod u+x gunicorn_start.sh
 ## symlink configurations
 sudo ln -sf /etc/nginx/sites-available/$SITENAME.conf /etc/nginx/sites-enabled/$SITENAME.conf
 
+
 ## Restart services
 sudo service nginx stop
 sudo service nginx start
@@ -64,3 +66,8 @@ sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start gunicorn
 sudo supervisorctl start redis
+
+
+# populate redis with bus stops data
+cd $ROOT/source/app
+../../venv/bin/python -c "import bus_stop; bus_stop.import_map_to_redis()"
