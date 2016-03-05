@@ -8,11 +8,16 @@ from fabric.api import local
 from fabric.context_managers import shell_env
 
 
+env.use_ssh_config = True
+
+
 def update_source():
     with cd('source'):
+        branch = 'dev' if env.host == 'localhost' else 'master'
+        run('git checkout ' + branch)
         run('git fetch')
-        current_commit = local('git log -n 1 --format=%H', capture=True)
-        run('git reset --hard {}'.format(current_commit))
+        current_commit = local('git log {branch} -n 1 --format=%H'.format(branch=branch), capture=True)
+        run('git reset --hard ' + current_commit)
 
 
 def update_virtualenv():

@@ -37,6 +37,7 @@ python3 -m venv --copies --clear venv
 source venv/bin/activate
 git clone https://github.com/hans-t/sg-bus-arrival.git source
 pip install -r source/requirements.txt
+pip install -U pip setuptools
 
 
 ## Populate variables in files
