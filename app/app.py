@@ -19,7 +19,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/api/bus/<bus_stop_id>')
+@app.route('/api/bus_stop/<bus_stop_id>')
 def arrivals_data(bus_stop_id):
     return jsonify(**bus_stop.get_info(bus_stop_id))
 

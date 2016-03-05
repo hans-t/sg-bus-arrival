@@ -11,7 +11,7 @@
 function loadBusStopInfo(busStopId) {
     var request = new XMLHttpRequest();
     request.addEventListener('load', renderData);
-    request.open('GET', '/api/bus/' + busStopId, true);
+    request.open('GET', '/api/bus_stop/' + busStopId, true);
     request.responseType = 'json';
     request.send();
 }
