@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import send_from_directory
 from flask import jsonify
 
 import bus_stop
@@ -16,7 +16,7 @@ app = Flask(
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory(settings.STATIC_FOLDER, 'html/index.html')
 
 
 @app.route('/api/bus_stop/<bus_stop_id>')
