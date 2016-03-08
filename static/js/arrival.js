@@ -1,4 +1,5 @@
 (function(){
+    /* Attach event handler to input. */
     var input = document.getElementById('bus-stop-id-input');
     input.oninput = function(event) {
         if (this.checkValidity()) {
@@ -25,7 +26,7 @@ function renderData(event){
     var busStopDescSpan = document.getElementById('bus-stop-desc-p');
     busStopDescSpan.textContent = getBusStopDesc(busStopInfo);
 
-    var resultTable = document.getElementById('arrival-table');
+    var resultTable = document.getElementById('bus-stop-data-tbody');
     cleanUpTable(resultTable);
 
     var busServices = busStopInfo.Services;
@@ -35,28 +36,28 @@ function renderData(event){
             {
                 'key': 'serviceNo',
                 'value': busService.ServiceNo,
-                'class': 'data-service-no',
+                'class': 'data-service-no'
             },
             {
                 'key': 'nextBusArrival',
                 'value': getTimeDiff(currentTime, busService.NextBus.EstimatedArrival),
-                'class': 'data-next-bus-arrival',
+                'class': 'data-next-bus-arrival'
             },
             {
                 'key': 'secondBusArrival',
                 'value': getTimeDiff(currentTime, busService.SubsequentBus.EstimatedArrival),
-                'class': 'data-second-bus-arrival',
+                'class': 'data-second-bus-arrival'
             },
             {
                 'key': 'thirdBusArrival',
                 'value': getTimeDiff(currentTime, busService.SubsequentBus3.EstimatedArrival),
-                'class': 'data-third-bus-arrival',
+                'class': 'data-third-bus-arrival'
             },
             {
                 'key': 'busStatus',
                 'value': busService.Status,
-                'class': 'data-bus-service-status',
-            },
+                'class': 'data-bus-service-status'
+            }
         ]
         renderRowToTable(resultTable, row);
     }
@@ -73,7 +74,7 @@ function getBusStopDesc(busStopInfo) {
 
 
 function cleanUpTable(table) {
-    while (table.children.length > 1) {
+    while (table.firstChild) {
         table.removeChild(table.lastChild);
     }
 }
@@ -98,9 +99,9 @@ function renderRowToTable(table, row) {
     for (var i=0; i<row.length; i++) {
         var td = document.createElement('td');
         var data = row[i];
-        var tdValue = document.createTextNode(data['value']);
+        var tdValue = document.createTextNode(data.value);
         td.appendChild(tdValue);
-        td.className = data['class'];
+        td.className = data.class;
         tr.appendChild(td);
     }
     table.appendChild(tr);

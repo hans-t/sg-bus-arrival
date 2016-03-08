@@ -9,15 +9,16 @@
             <input id="bus-stop-id-input" type="text" pattern="\d{5}" autofocus>
         </label>
         <p id='bus-stop-desc-p'></p>
-        <table id="arrival-table">
-            <tr>
+        <table>
+            <thead>
                 <td>Service No.</td>
                 <td>Next Bus</td>
                 <td>2nd Next Bus</td>
                 <td>3rd Next Bus</td>
                 <td>Status</td>
-            </tr>
+            </thead>
+            <tbody id="bus-stop-data-tbody"></tbody>
         </table>
-        <script src="static/js/checkArrival.js"></script>
+        <script src="static/js/arrival.js"></script>
     </body>
 </html>

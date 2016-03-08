@@ -11,12 +11,12 @@ table td {
     border-right: 1px solid #000;
 }
 
-table tr:first-child {
+table thead {
     border-bottom: 1px solid #000;
     border-top: 1px solid #000;
 }
 
-table tr:last-child {
+table tbody {
     border-bottom: 1px solid #000;
 }
 
